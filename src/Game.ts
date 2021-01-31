@@ -23,7 +23,6 @@ export default class Game {
 
     this.player.light = { ...PLAYER_LIGHTS[difficulty] };
     this.player.ligthDistance = 0;
-    console.log(this.player);
   }
 
   drawTile(x: number, y: number, num: number) {

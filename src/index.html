@@ -16,116 +16,115 @@
     <title>Bionic BuddhistDungeon</title>
     <style>
       html,
-body {
-  width: 100%;
-  min-height: 100vh;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  /* background-color: #000000;
+      body {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        /* background-color: #000000;
         background-image: linear-gradient(315deg, #000000 0%, #414141 74%); */
-  background-color: #000000;
-  background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
-}
-body,
-#mainScreen,
-#gameOverScreen {
-  font-family: "Ubuntu", sans-serif;
-  color: wheat;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* background-color: #333; */
-  z-index: 100;
-}
-canvas {
-  position: absolute;
-  border: #ccc;
-  z-index: -100;
-}
-h1 {
-  color: wheat;
-  text-align: center;
-  margin-bottom: 4rem;
-  font-weight: lighter;
-  font-family: "Ubuntu", sans-serif;
-}
+        background-color: #000000;
+        background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+      }
+      body,
+      #mainScreen,
+      #gameOverScreen {
+        font-family: "Ubuntu", sans-serif;
+        color: wheat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #333; */
+        z-index: 100;
+      }
+      canvas {
+        position: absolute;
+        border: #ccc;
+        z-index: -100;
+      }
+      h1 {
+        color: wheat;
+        text-align: center;
+        margin-bottom: 4rem;
+        font-weight: lighter;
+        font-family: "Ubuntu", sans-serif;
+      }
 
-#result {
-  margin-bottom: 2rem;
-}
-#gameDetail {
-  margin-bottom: 2rem;
-}
+      #result {
+        margin-bottom: 2rem;
+      }
+      #gameDetail {
+        margin-bottom: 2rem;
+      }
 
-#difficulty-div {
-  min-height: 4rem;
-  min-width: 16rem;
-  margin-bottom: 1rem;
-  padding: 1rem;
-  color: wheat;
-  /* border: 1px solid wheat; */
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
+      #difficulty-div {
+        min-height: 4rem;
+        min-width: 16rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        color: wheat;
+        /* border: 1px solid wheat; */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
 
-.arrow {
-  color: wheat;
-  font-weight: 800;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-select: none;
-}
-.arrow:hover {
-  color: lightgreen;
-}
+      .arrow {
+        color: wheat;
+        font-weight: 800;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+      }
+      .arrow:hover {
+        color: lightgreen;
+      }
 
-#difficulty {
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  text-align: center;
-  font-family: monospace;
-  font-weight: 400;
-  font-size: 2rem;
-  min-width: 6rem;
-  text-transform: capitalize;
-}
+      #difficulty {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        text-align: center;
+        font-family: monospace;
+        font-weight: 400;
+        font-size: 2rem;
+        min-width: 6rem;
+        text-transform: capitalize;
+      }
 
-.btn {
-  font-size: 1rem;
-  cursor: pointer;
-  background-color: transparent;
-  border: none;
-}
-.menuButton {
-  letter-spacing: 0.5rem;
-  font-size: 1rem;
-  min-width: 15rem;
-  min-height: 4rem;
-  border-radius: 8px;
-  border-color: #4caf50;
-  background-color: transparent;
-  color: white;
-  transition-duration: 0.4s;
-}
+      .btn {
+        font-size: 1rem;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+      }
+      .menuButton {
+        letter-spacing: 0.5rem;
+        font-size: 1rem;
+        min-width: 15rem;
+        min-height: 4rem;
+        border-radius: 8px;
+        border-color: #4caf50;
+        background-color: transparent;
+        color: white;
+        transition-duration: 0.4s;
+      }
 
-.menuButton:hover {
-  background-color: #4caf50; /* Green */
-  color: white;
-}
-#gameOverScreen {
-  padding: 2rem;
-  border-radius: 8px;
-  background-color: black;
-}
-
+      .menuButton:hover {
+        background-color: #4caf50; /* Green */
+        color: white;
+      }
+      #gameOverScreen {
+        padding: 2rem;
+        border-radius: 8px;
+        background-color: black;
+      }
     </style>
   </head>
   <body>
-    <canvas id="gameCanvas" width="480" height="480"></canvas
+    <canvas id="gameCanvas" width="480" height="480"></canvas>
     <div id="mainScreen">
       <h1>
         Bionic Buddhist <br />
@@ -133,13 +132,9 @@ h1 {
       </h1>
 
       <div id="difficulty-div">
-        <button tabindex="0" class="btn arrow" onclick="changeDifficulty(-1)">
-          ‹
-        </button>
+        <button tabindex="0" id="lessDiff" class="btn arrow">‹</button>
         <div id="difficulty">Normal</div>
-        <button tabindex="0" class="btn arrow" onclick="changeDifficulty(1)">
-          ›
-        </button>
+        <button tabindex="0" class="btn arrow" id="plusDiff">›</button>
       </div>
       <button id="startBtn" class="menuButton" onclick="init()">START</button>
     </div>
@@ -148,9 +143,7 @@ h1 {
       <h1 id="result">You won!</h1>
       <p id="gameDetail">Battery remaining: 34mAh</p>
 
-      <button id="menuBtn" onclick="showMainScreen()" class="menuButton">
-         ‹ Main Screen
-      </button>
+      <button id="menuBtn" class="menuButton">‹ Main Screen</button>
     </div>
   </body>
 </html>

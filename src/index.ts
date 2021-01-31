@@ -10,20 +10,35 @@ const DIFFICULTY_LIST = ["easy", "normal", "hard", "blindfold"];
 let difficulty: DIFFICULTY = "normal";
 
 const mainScreen = document.getElementById("mainScreen") as HTMLDivElement;
+
+const startBtn = document.getElementById("startBtn") as HTMLDivElement;
+startBtn.onclick = init;
+
+
+const menuBtn = document.getElementById("menuBtn") as HTMLDivElement;
+menuBtn.onclick = () => showMainScreen();
+
+const lessDiff = document.getElementById("lessDiff") as HTMLDivElement;
+lessDiff.onclick = () => changeDifficulty(-1)
+
+const plusDiff = document.getElementById("plusDiff") as HTMLDivElement;
+plusDiff.onclick = () => changeDifficulty(1)
+
 const difficultyDiv = document.getElementById("difficulty") as HTMLDivElement;
 
-  export const gameOverScreen = document.getElementById(
-    "gameOverScreen"
-  ) as HTMLDivElement;
+export const gameOverScreen = document.getElementById(
+  "gameOverScreen"
+) as HTMLDivElement;
 
-(window as any).showMainScreen = () => {
+function showMainScreen() {
+  console.log(mainScreen)
   mainScreen.style.display = "flex";
   gameOverScreen.style.display = "none";
 
   canvas.style.zIndex = "-100";
 };
 
-(window as any).changeDifficulty = (num) => {
+function changeDifficulty(num) {
   const currentIdx = DIFFICULTY_LIST.indexOf(difficulty);
   let newIdx = (currentIdx + num) % DIFFICULTY_LIST.length;
 
@@ -46,11 +61,11 @@ player = new Player(
 
 game = new Game(player);
 
-(window as any).init = () => {
+function init() {
   mainScreen.style.display = "none";
   canvas.style.zIndex = "100";
 
   game.start(difficulty);
-};
+}
 
 // init();
