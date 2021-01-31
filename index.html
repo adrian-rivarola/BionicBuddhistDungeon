@@ -1,0 +1,106 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><link href="data:image/x-icon;base64,AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHJvcSFvebTJcG5zUgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHJwcktshv/paY3/x252qN1vbW8lAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABxcHOFbILuvXmK09///4fxsK940W9tbwoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcW9xB3BvdbX//4fi//+M////if+QjnOfb21vAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABwbnAgqql4sP//jPX//4r///+D/3l3cWUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHBucEnh4X+4zNS+/6a0y//n53/2b21wN29tcB8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcG5wc+3tgLj//4b///+J/nqEr/pse8jTb21wEgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAG9tcAB+fHKB/v6C4ICV7Ptpi//Fw8OA7JOSdalwbnEMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcG1wcmmI/9p3i+XC+vqC/P//jf///4r/srF50XFvcSQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHBtcEFwb3XB//+H8///jP///4z///+N////iL1ycHKNAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcG5wZP//h77//4z///+N8traf7pxb3JDcnByBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHBucQumpXir//+L2qCfd7Fxb3E7AAAAAHJwcoRzcHM9AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcG5xend1cpVxb3EicW9xAXJwcmlycHIBc3FzYnNxc2gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHFvcQhxb3EDcW9ySHJwckBycHI8cnByZQAAAAB0cnQOAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHJwcgJycHKGAAAAAHNxc2lzcXMoAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAcnByVnNxcg5zcXMAc3FzAgAAAAAAAAAAx/8AAIP/AACB/wAAgP8AAMD/AADgPwAA8B8AAPAPAAD4BwAA+AcAAPwHAAD8EwAA/gEAAP4FAAD/kwAA/8MAAA==" rel="icon" type="image/x-icon"/><meta name="viewport" content="width=device-width,initial-scale=1"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,500&display=swap" rel="stylesheet"/><title>Bionic BuddhistDungeon</title><style>html,
+      body {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        /* background-color: #000000;
+        background-image: linear-gradient(315deg, #000000 0%, #414141 74%); */
+        background-color: #000000;
+        background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+      }
+      body,
+      #mainScreen,
+      #gameOverScreen {
+        font-family: "Ubuntu", sans-serif;
+        color: wheat;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* background-color: #333; */
+        z-index: 100;
+      }
+      canvas {
+        position: absolute;
+        border: #ccc;
+        z-index: -100;
+      }
+      h1 {
+        color: wheat;
+        text-align: center;
+        margin-bottom: 4rem;
+        font-weight: lighter;
+        font-family: "Ubuntu", sans-serif;
+      }
+
+      #result {
+        margin-bottom: 2rem;
+      }
+      #gameDetail {
+        margin-bottom: 2rem;
+      }
+
+      #difficulty-div {
+        min-height: 4rem;
+        min-width: 16rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
+        color: wheat;
+        /* border: 1px solid wheat; */
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+
+      .arrow {
+        color: wheat;
+        font-weight: 800;
+        user-select: none;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+      }
+      .arrow:hover {
+        color: lightgreen;
+      }
+
+      #difficulty {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        text-align: center;
+        font-family: monospace;
+        font-weight: 400;
+        font-size: 2rem;
+        min-width: 6rem;
+        text-transform: capitalize;
+      }
+
+      .btn {
+        font-size: 1rem;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+      }
+      .menuButton {
+        letter-spacing: 0.5rem;
+        font-size: 1rem;
+        min-width: 15rem;
+        min-height: 4rem;
+        border-radius: 8px;
+        border-color: #4caf50;
+        background-color: transparent;
+        color: white;
+        transition-duration: 0.4s;
+      }
+
+      .menuButton:hover {
+        background-color: #4caf50; /* Green */
+        color: white;
+      }
+      #gameOverScreen {
+        padding: 2rem;
+        border-radius: 8px;
+        background-color: black;
+      }</style></head><body><canvas id="gameCanvas" width="480" height="480"></canvas><div id="mainScreen"><h1>Bionic Buddhist<br/>Dungeon</h1><div id="difficulty-div"><button tabindex="0" id="lessDiff" class="btn arrow">‹</button><div id="difficulty">Normal</div><button tabindex="0" class="btn arrow" id="plusDiff">›</button></div><button id="startBtn" class="menuButton" onclick="init()">START</button></div><div id="gameOverScreen" style="display: none"><h1 id="result">You won!</h1><p id="gameDetail">Battery remaining: 34mAh</p><button id="menuBtn" class="menuButton">‹ Main Screen</button></div><script>!function(t){var e={};function r(i){if(e[i])return e[i].exports;var n=e[i]={i:i,l:!1,exports:{}};return t[i].call(n.exports,n,n.exports,r),n.l=!0,n.exports}r.m=t,r.c=e,r.d=function(t,e,i){r.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:i})},r.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},r.t=function(t,e){if(1&e&&(t=r(t)),8&e)return t;if(4&e&&"object"==typeof t&&t&&t.__esModule)return t;var i=Object.create(null);if(r.r(i),Object.defineProperty(i,"default",{enumerable:!0,value:t}),2&e&&"string"!=typeof t)for(var n in t)r.d(i,n,function(e){return t[e]}.bind(null,n));return i},r.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return r.d(e,"a",e),e},r.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},r.p="",r(r.s=0)}([function(t,e,r){"use strict";var i=this&&this.__importDefault||function(t){return t&&t.__esModule?t:{default:t}};Object.defineProperty(e,"__esModule",{value:!0}),e.gameOverScreen=e.player=e.game=void 0;var n=r(3),o=i(r(4)),a=i(r(5)),s=r(1),l=["easy","normal","hard","blindfold"],c="normal",h=document.getElementById("mainScreen");document.getElementById("startBtn").onclick=function(){h.style.display="none",s.canvas.style.zIndex="100",e.game.start(c)},document.getElementById("menuBtn").onclick=function(){return console.log(h),h.style.display="flex",e.gameOverScreen.style.display="none",void(s.canvas.style.zIndex="-100")},document.getElementById("lessDiff").onclick=function(){return u(-1)},document.getElementById("plusDiff").onclick=function(){return u(1)};var d=document.getElementById("difficulty");function u(t){var e=(l.indexOf(c)+t)%l.length;-1===e&&(e=l.length-1),c=l[e],d.innerText=c}e.gameOverScreen=document.getElementById("gameOverScreen"),e.player=new o.default(new n.KeyboardController({up:"w",down:"s",left:"a",right:"d"})),e.game=new a.default(e.player)},function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.MAZE_SIZE=e.TILE_SIZE=e.CANVAS_SIZE=e.ctx=e.canvas=void 0;var i=r(0);function n(){var t=e.CANVAS_SIZE;if(e.CANVAS_SIZE=Math.min(innerWidth,innerHeight)-10,e.CANVAS_SIZE-=e.CANVAS_SIZE%e.MAZE_SIZE,e.TILE_SIZE=Math.floor(e.CANVAS_SIZE/e.MAZE_SIZE),e.canvas.width=e.canvas.height=e.CANVAS_SIZE,i.player){var r=e.CANVAS_SIZE/t;i.player.x*=r,i.player.y*=r}}e.canvas=document.getElementById("gameCanvas"),e.ctx=e.canvas.getContext("2d"),e.CANVAS_SIZE=480,e.TILE_SIZE=32,e.MAZE_SIZE=15,onresize=n,n()},function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.getAngle=e.clamp=e.degreesToRadians=e.randomNumber=void 0,e.randomNumber=function(t,e){return Math.floor(Math.random()*(e-t+1)+t)},e.degreesToRadians=function(t){return t*Math.PI/180};var i={UP:270,DOWN:90,LEFT:180,RIGHT:0};e.clamp=function(t,e,r){return Math.max(t,Math.min(r,e))},e.getAngle=function(t){return i[t]}},function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.GamepadController=e.KeyboardController=void 0;var i={},n={};onkeydown=onkeyup=function(t){var e,r=t.key.toLowerCase(),n="d"===t.type[3];n!==(null===(e=i[r])||void 0===e?void 0:e.state)&&(i[r]={state:n,active:n})},window.addEventListener("gamepadconnected",(function(t){var e=t.gamepad;n[e.id]=e})),window.addEventListener("gamepaddisconnected",(function(t){var e=t.gamepad;delete n[e.id]}));var o=function(){function t(t){this.keys=t}return Object.defineProperty(t.prototype,"up",{get:function(){var t;return null===(t=i[this.keys.up])||void 0===t?void 0:t.active},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"down",{get:function(){var t;return null===(t=i[this.keys.down])||void 0===t?void 0:t.active},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"left",{get:function(){var t;return null===(t=i[this.keys.left])||void 0===t?void 0:t.active},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"right",{get:function(){var t;return null===(t=i[this.keys.right])||void 0===t?void 0:t.active},enumerable:!1,configurable:!0}),t}();e.KeyboardController=o;var a=function(){function t(t){var e;void 0===t&&(t=null===(e=navigator.getGamepads()[0])||void 0===e?void 0:e.id),this.id=t}return Object.defineProperty(t.prototype,"up",{get:function(){var t=n[this.id].buttons[12].pressed,e=n[this.id].axes[1]<-.5;return t||e},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"down",{get:function(){var t=n[this.id].buttons[13].pressed,e=n[this.id].axes[1]>.5;return t||e},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"left",{get:function(){var t=n[this.id].buttons[14].pressed,e=n[this.id].axes[0]<-.5;return t||e},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"right",{get:function(){var t=n[this.id].buttons[15].pressed,e=n[this.id].axes[0]>.5;return t||e},enumerable:!1,configurable:!0}),t}();e.GamepadController=a},function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var i=r(2),n=r(1),o=Math.floor,a=function(){function t(t){this.controller=t,this.vx=0,this.vy=0,this.acc=.15,this.direction="UP",this.ligthDistance=0,this.glow=!0,this.x=300,this.y=550,this.radius=n.TILE_SIZE/4,this.light={distance:3,angle:120,brightness:.75}}return Object.defineProperty(t.prototype,"maxSpeed",{get:function(){return o(n.TILE_SIZE/12)},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"w",{get:function(){return 2*this.radius},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"h",{get:function(){return 2*this.radius},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"angle",{get:function(){return i.getAngle(this.direction)-this.light.angle/2},enumerable:!1,configurable:!0}),Object.defineProperty(t.prototype,"gridPos",{get:function(){return{x:o(this.x/n.TILE_SIZE),y:o(this.y/n.TILE_SIZE)}},enumerable:!1,configurable:!0}),t.prototype.onGameOver=function(){this.light.distance=2*n.MAZE_SIZE,this.light.brightness=1,this.light.angle=360},t.prototype.accelerate=function(){this.controller.up?(this.vy-=this.acc,this.direction="UP"):this.controller.down?(this.vy+=this.acc,this.direction="DOWN"):this.vy=0,this.controller.left?(this.vx-=this.acc,this.direction="LEFT"):this.controller.right?(this.vx+=this.acc,this.direction="RIGHT"):this.vx=0;var t=this.maxSpeed;this.vx=i.clamp(-t,t,this.vx),this.vy=i.clamp(-t,t,this.vy)},t.prototype.move=function(){this.x+=this.vx,this.y+=this.vy,this.x=i.clamp(this.radius,n.CANVAS_SIZE-this.radius,this.x),this.y=i.clamp(this.radius,n.CANVAS_SIZE-this.radius,this.y)},t.prototype.update=function(t){var e={x:this.x,y:this.y};this.accelerate(),this.move();var r=this.gridPos,i=r.x,o=r.y;1===t[o][i]&&(this.x=e.x,this.y=e.y);var a=i*n.TILE_SIZE,s=o*n.TILE_SIZE;this.x-this.radius<a&&1===t[o][i-1]&&(this.x-=this.vx),this.x+this.radius>a+n.TILE_SIZE&&1===t[o][i+1]&&(this.x-=this.vx),this.y-this.radius<s?t[o-1]&&1===t[o-1][i]&&(this.y-=this.vy):this.y+this.radius>s+n.TILE_SIZE&&t[o+1]&&1===t[o+1][i]&&(this.y-=this.vy)},t.prototype.renderLight=function(){this.ligthDistance<this.light.distance&&(this.ligthDistance+=.05),n.ctx.save();var t=i.degreesToRadians(this.angle),e=i.degreesToRadians(this.angle+this.light.angle);n.ctx.beginPath(),n.ctx.ellipse(this.x,this.y,this.radius,this.radius,0,0,2*Math.PI),n.ctx.fill(),n.ctx.globalCompositeOperation="destination-atop",n.ctx.globalAlpha=this.light.brightness,n.ctx.moveTo(this.x,this.y),n.ctx.arc(this.x,this.y,n.TILE_SIZE*this.ligthDistance,t,e),n.ctx.fill(),n.ctx.closePath(),n.ctx.restore()},t.prototype.render=function(){if(n.ctx.save(),this.light){var t=this.x-this.x%n.TILE_SIZE,e=this.y-this.y%n.TILE_SIZE;n.ctx.strokeRect(t,e,n.TILE_SIZE,n.TILE_SIZE),this.renderLight()}this.glow&&(n.ctx.beginPath(),n.ctx.ellipse(this.x,this.y,this.radius,this.radius,0,0,2*Math.PI),n.ctx.shadowColor="yellow",n.ctx.shadowOffsetX=0,n.ctx.shadowOffsetY=0,n.ctx.shadowBlur=10,n.ctx.stroke(),n.ctx.closePath()),n.ctx.restore()},t}();e.default=a},function(t,e,r){"use strict";var i=this&&this.__assign||function(){return(i=Object.assign||function(t){for(var e,r=1,i=arguments.length;r<i;r++)for(var n in e=arguments[r])Object.prototype.hasOwnProperty.call(e,n)&&(t[n]=e[n]);return t}).apply(this,arguments)};Object.defineProperty(e,"__esModule",{value:!0});var n=r(1),o=r(6),a=r(0),s=function(){function t(t){this.player=t,this.isBlindfold=!1,this.paused=!0,this.colors=["teal","#333","yellow","red"]}return t.prototype.configPlayer=function(t){this.player.x=this.startPosition.x,this.player.y=this.startPosition.y,this.player.direction="UP",this.player.light=i({},c[t]),this.player.ligthDistance=0},t.prototype.drawTile=function(t,e,r){n.ctx.save(),n.ctx.fillStyle=this.colors[r],n.ctx.fillRect(t*n.TILE_SIZE,e*n.TILE_SIZE,n.TILE_SIZE,n.TILE_SIZE),n.ctx.restore()},t.prototype.renderTime=function(){n.ctx.save(),n.ctx.strokeStyle=this.battery>3?"white":"red",n.ctx.font="1rem monospace";var t="Battery: "+Math.ceil(this.battery)+"mAh";n.ctx.strokeText(t,n.TILE_SIZE/2,n.TILE_SIZE/2),n.ctx.restore()},t.prototype.renderMaze=function(){var t,e=this.player.gridPos,r=e.x,i=e.y;this.paused||3!==this.grid[i][r]||this.end();for(var n=Math.floor(null===(t=this.player.light)||void 0===t?void 0:t.distance)+1,o=r-n;o<=r+n;o++)for(var a=i-n;a<=i+n;a++)this.grid[a]&&this.drawTile(o,a,this.grid[a][o])},t.prototype.renderBackground=function(){n.ctx.save(),n.ctx.fillStyle="#333",n.ctx.fillRect(0,0,n.CANVAS_SIZE,n.CANVAS_SIZE),n.ctx.restore()},t.prototype.render=function(){var t=this;this.isBlindfold||(this.battery-=.003,this.battery<0&&this.end()),this.player.update(this.grid),this.renderBackground(),this.renderMaze(),this.player.render(),this.renderTime(),!this.paused&&requestAnimationFrame((function(){return t.render()}))},t.prototype.start=function(t){var e=this;this.grid=o.createMaze(15);for(var r=0;r<this.grid.length;r++)for(var i=0;i<this.grid.length;i++)2===this.grid[r][i]&&(this.startPosition={x:i*n.TILE_SIZE+n.TILE_SIZE/2,y:r*n.TILE_SIZE+n.TILE_SIZE/2},this.grid[r-1]&&(this.grid[r-1][i]=0));this.paused=!1,this.isBlindfold="blindfold"===t,this.battery=l[t],this.configPlayer(t),requestAnimationFrame((function(){return e.render()}))},t.prototype.end=function(){this.paused=!0,this.player.onGameOver();var t=this.battery>0||this.isBlindfold?"You Won!":"You Lost :(";a.gameOverScreen.children.item(0).innerHTML=t,a.gameOverScreen.children.item(1).innerHTML="Battery remaining: "+Math.ceil(this.battery)+" mAh",a.gameOverScreen.style.display="flex",this.renderGameOverScreen()},t.prototype.renderGameOverScreen=function(){var t=this;this.renderMaze(),this.player.render(),requestAnimationFrame((function(){return t.renderGameOverScreen()}))},t}();e.default=s;var l={easy:15,normal:10,hard:5,blindfold:0},c={easy:{brightness:1,distance:4,angle:140},normal:{brightness:.75,distance:2.5,angle:120},hard:{brightness:.5,distance:1.25,angle:90},blindfold:null}},function(t,e,r){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.createMaze=void 0;var i,n=r(2);e.createMaze=function(t,e){void 0===e&&(e=1),i=new Array;for(var r=0;r<t;r++){i[r]=new Array;for(var o=0;o<t;o++)i[r][o]=0}!function(){for(var t=0;t<i.length;t++)if(0==t||t==i.length-1)for(var e=0;e<i.length;e++)i[t][e]=1;else i[t][0]=1,i[t][i.length-1]=1}();var a,s=(a=n.randomNumber(1,i.length-1),i[i.length-1][a]=2,a);return function t(e,r,o,a,s,l){if(e){if(o-r<2)return;var c=2*Math.floor(n.randomNumber(a,s)/2);!function(t,e,r){for(var o=2*Math.floor(n.randomNumber(t,e)/2)+1,a=t;a<=e;a++)i[r][a]=a==o?0:1}(r,o,c),t(!e,r,o,a,c-1,l),t(!e,r,o,c+1,s,l)}else{if(s-a<2)return;var h=2*Math.floor(n.randomNumber(r,o)/2);!function(t,e,r){for(var o=2*Math.floor(n.randomNumber(t,e)/2)+1,a=t;a<=e;a++)i[a][r]=a==o?0:1}(a,s,h),t(!e,r,h-1,a,s,l),t(!e,h+1,o,a,s,l)}}(!0,1,i.length-2,1,i.length-2,s),function t(e){void 0===e&&(e=0);for(var r=[],o=0;o<i.length;o++)0===i[e][o]&&r.push(o);if(0===r.length)return t(e+1);var a=r[n.randomNumber(0,r.length-1)];i[e][a]=3}(),i}}]);</script></body></html>
